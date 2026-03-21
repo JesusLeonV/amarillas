@@ -42,11 +42,11 @@
         }
 
         .personal-message {
-            font-size: 1.5rem;
+            font-size: 1.4rem;
             color: #5d4037;
-            line-height: 1.6;
-            margin-top: 15px;
-            max-width: 80%;
+            line-height: 1.4;
+            margin-top: 10px;
+            max-width: 85%;
             opacity: 0;
             animation: fadeIn 2s ease-out forwards 1s;
         }
@@ -68,7 +68,6 @@
             animation: sway 6s ease-in-out infinite;
         }
 
-        /* Variaciones manuales */
         .l1 { transform: scale(1); }
         .l2 { animation-delay: 1s; transform: scale(0.85); }
         .l3 { animation-delay: 2s; transform: scale(1.15); }
@@ -109,7 +108,6 @@
         .t5 { transform: rotate(255deg); }
         .t6 { transform: rotate(315deg); filter: brightness(90%); }
 
-        /* --- El Centro de la Flor --- */
         .center-group {
             position: absolute;
             width: 28px;
@@ -128,7 +126,6 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.2);
         }
 
-        /* --- El Tallo Largo --- */
         .stem {
             position: absolute;
             width: 10px;
@@ -142,7 +139,7 @@
             z-index: -1;
         }
 
-        /* --- Corazones de Fondo --- */
+        /* --- Corazones --- */
         .heart-particle {
             position: absolute;
             color: #ffb74d;
@@ -152,7 +149,6 @@
             animation: floatUp linear infinite;
         }
 
-        /* --- Animaciones --- */
         @keyframes sway {
             0%, 100% { transform: rotate(-2.5deg); }
             50% { transform: rotate(2.5deg); }
@@ -165,73 +161,59 @@
             0% { transform: translateY(105vh) rotate(0deg) scale(1); opacity: 1; }
             100% { transform: translateY(-10vh) rotate(360deg) scale(0.5); opacity: 0; }
         }
+
+        /* --- Control de Música --- */
+        #music-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(251, 192, 45, 0.8);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+        #music-control:hover { transform: scale(1.1); }
+        #music-icon { font-size: 24px; }
     </style>
 </head>
 <body>
 
+    <div id="music-control" onclick="toggleMusic()">
+        <span id="music-icon">🎵</span>
+    </div>
+
+    <audio id="background-music" loop>
+        <source src="mar-ft-jósean-log.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="text-container">
-        <h1 class="main-title">Un ramito de lirios </h1>
+        <h1 class="main-title">Un ramito de lirios</h1>
         <p class="personal-message">
-mi niña hermosa <br>te amo con toda mi alma mi vida hermosa y te extraño <br> no tienes idea lo mucho que te necesito
- <br>te mereces esto y mucho más, 
-<br>la distancia nos podra separar pero no impedira que te de tu ramito <br>
-asi no eres espectadora mi vida :3 
+            mi niña hermosa <br>te amo con toda mi alma mi vida hermosa y te extraño <br> 
+            no tienes idea lo mucho que te necesito <br>
+            te mereces esto y mucho más, <br>
+            la distancia nos podrá separar pero no impedirá que te dé tu ramito <br>
+            así no eres espectadora mi vida :3 
         </p>
     </div>
 
     <div class="garden">
-        <div class="lily l1">
-            <div class="flower-head">
-                <div class="tepal inner t1"></div><div class="tepal outer t2"></div>
-                <div class="tepal inner t3"></div><div class="tepal outer t4"></div>
-                <div class="tepal inner t5"></div><div class="tepal outer t6"></div>
-                <div class="center-group"><div class="center-circle"></div></div>
-            </div>
-            <div class="stem"></div>
-        </div>
-
-        <div class="lily l2">
-            <div class="flower-head">
-                <div class="tepal inner t1"></div><div class="tepal outer t2"></div>
-                <div class="tepal inner t3"></div><div class="tepal outer t4"></div>
-                <div class="tepal inner t5"></div><div class="tepal outer t6"></div>
-                <div class="center-group"><div class="center-circle"></div></div>
-            </div>
-            <div class="stem" style="height: 280px;"></div>
-        </div>
-
-        <div class="lily l3">
-            <div class="flower-head" style="top: -410px;"> 
-                <div class="tepal inner t1"></div><div class="tepal outer t2"></div>
-                <div class="tepal inner t3"></div><div class="tepal outer t4"></div>
-                <div class="tepal inner t5"></div><div class="tepal outer t6"></div>
-                <div class="center-group"><div class="center-circle"></div></div>
-            </div>
-            <div class="stem" style="height: 400px;"></div>
-        </div>
-
-        <div class="lily l4">
-            <div class="flower-head" style="top: -330px;">
-                <div class="tepal inner t1"></div><div class="tepal outer t2"></div>
-                <div class="tepal inner t3"></div><div class="tepal outer t4"></div>
-                <div class="tepal inner t5"></div><div class="tepal outer t6"></div>
-                <div class="center-group"><div class="center-circle"></div></div>
-            </div>
-            <div class="stem" style="height: 320px;"></div>
-        </div>
-
-        <div class="lily l5">
-            <div class="flower-head">
-                <div class="tepal inner t1"></div><div class="tepal outer t2"></div>
-                <div class="tepal inner t3"></div><div class="tepal outer t4"></div>
-                <div class="tepal inner t5"></div><div class="tepal outer t6"></div>
-                <div class="center-group"><div class="center-circle"></div></div>
-            </div>
-            <div class="stem"></div>
-        </div>
+        <div class="lily l1"><div class="flower-head"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem"></div></div>
+        <div class="lily l2"><div class="flower-head"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem" style="height: 280px;"></div></div>
+        <div class="lily l3"><div class="flower-head" style="top: -410px;"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem" style="height: 400px;"></div></div>
+        <div class="lily l4"><div class="flower-head" style="top: -330px;"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem" style="height: 320px;"></div></div>
+        <div class="lily l5"><div class="flower-head"><div class="tepal inner t1"></div><div class="tepal outer t2"></div><div class="tepal inner t3"></div><div class="tepal outer t4"></div><div class="tepal inner t5"></div><div class="tepal outer t6"></div><div class="center-group"><div class="center-circle"></div></div></div><div class="stem"></div></div>
     </div>
 
     <script>
+        // Lógica de los corazones
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart-particle');
@@ -241,12 +223,25 @@ asi no eres espectadora mi vida :3
             heart.style.fontSize = size;
             const duration = Math.random() * 5 + 4 + "s";
             heart.style.animationDuration = duration;
-            heart.style.opacity = Math.random() * 0.5 + 0.3;
+            heart.style.opacity = (Math.random() * 0.5 + 0.3).toString();
             document.body.appendChild(heart);
             setTimeout(() => { heart.remove(); }, 9000); 
         }
         setInterval(createHeart, 300);
-    </script>
 
+        // Lógica de la música
+        const music = document.getElementById('background-music');
+        const icon = document.getElementById('music-icon');
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play().catch(e => console.log("Error al reproducir:", e));
+                icon.innerHTML = '⏸️'; 
+            } else {
+                music.pause();
+                icon.innerHTML = '🎵'; 
+            }
+        }
+    </script>
 </body>
 </html>
