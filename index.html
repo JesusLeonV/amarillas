@@ -122,7 +122,7 @@
             <div class="tepal t3"></div><div class="tepal t4"></div>
             <div class="tepal t5"></div><div class="tepal t6"></div>
             <div class="center"></div>
-            <div class="stem" style="height: 150px;"></div>
+            <div class="stem" style="height: 300px;"></div>
         </div>
 
         <div class="lily l3">
@@ -130,7 +130,7 @@
             <div class="tepal t3"></div><div class="tepal t4"></div>
             <div class="tepal t5"></div><div class="tepal t6"></div>
             <div class="center"></div>
-            <div class="stem" style="height: 250px;"></div>
+            <div class="stem" style="height: 350px;"></div>
         </div>
 
         <div class="heart" style="left: 10%; animation-delay: 0s;">❤</div>
@@ -139,18 +139,16 @@
         <div class="heart" style="left: 80%; animation-delay: 1s;">❤</div>
     </div>
     <style>
-        /* Definimos el estilo del corazón flotante */
         .floating-heart {
             position: absolute;
-            color: #ffb74d; /* Naranja melocotón suave */
+            color: #ffb74d;
             opacity: 0.8;
             user-select: none;
-            pointer-events: none; /* No interfieren con clics */
-            z-index: 1; /* Por DETRÁS de las flores (que tienen z-index 10) */
+            pointer-events: none; 
+            z-index: 1; 
             animation: floatUp linear infinite;
         }
 
-        /* La animación que los hace subir y rotar */
         @keyframes floatUp {
             0% {
                 transform: translateY(105vh) rotate(0deg) scale(1);
@@ -163,23 +161,20 @@
         }
         @media (max-width: 600px) {
     .message {
-        font-size: 2rem; /* Texto más pequeño en móviles */
+        font-size: 2rem; 
         top: 5%;
         padding: 0 10px;
     }
 
     .garden {
-        /* En el celular, mostramos menos flores o las achicamos 
-           para que no se saturen */
         justify-content: center; 
         gap: 10px;
     }
 
     .lily {
-        transform: scale(0.6); /* Reducimos el tamaño general de los lirios */
+        transform: scale(0.6);
     }
 
-    /* Ocultamos algunos lirios para que no se vea desordenado en pantallas pequeñas */
     .lily:nth-child(n+4) {
         display: none;
     }
