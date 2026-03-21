@@ -2,51 +2,79 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Jardín de Lirios Amarillos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Niña Hermosa</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Great+Vibes&display=swap');
 
         body {
-            background-color: #fffde7;
+            background-color: #fffde7; /* Amarillo muy pálido */
             margin: 0;
+            padding: 0;
             height: 100vh;
+            width: 100vw;
             display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            overflow: hidden;
+            flex-direction: column;
+            overflow: hidden; /* Evita barras de desplazamiento */
             font-family: 'Dancing Script', cursive;
         }
 
-        .message {
-            position: absolute;
-            top: 10%;
-            width: 100%;
+        /* --- Contenedor de Texto Superior --- */
+        .text-container {
+            position: relative;
             text-align: center;
-            font-size: 3rem;
-            color: #fbc02d;
-            z-index: 100;
+            padding-top: 2vh;
+            z-index: 100; /* Siempre por encima */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-grow: 1; /* Ocupa el espacio superior */
+            justify-content: center;
         }
 
-        /* --- Contenedor de Lirios --- */
+        .main-title {
+            font-family: 'Great Vibes', cursive; /* Fuente más festiva */
+            font-size: 3.5rem;
+            color: #fbc02d;
+            margin: 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            animation: fadeIn 2s ease-out;
+        }
+
+        .personal-message {
+            font-size: 1.5rem;
+            color: #5d4037; /* Marrón suave */
+            line-height: 1.6;
+            margin-top: 15px;
+            max-width: 80%;
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards 1s; /* Aparece después */
+        }
+
+        /* --- El Jardín de Lirios Altos --- */
         .garden {
             display: flex;
             justify-content: space-around;
             width: 100%;
-            padding-bottom: 20px;
+            align-items: flex-end; /* Lirios desde la base */
+            padding-bottom: 2vh;
+            position: relative;
         }
 
         .lily {
             position: relative;
             transform-origin: bottom center;
-            animation: sway 4s ease-in-out infinite;
+            animation: sway 5s ease-in-out infinite;
         }
 
-        /* Variaciones de animación para que no se muevan igual */
-        .l2 { animation-delay: 1s; transform: scale(0.8); }
+        /* Variaciones manuales (escala y delay) */
+        .l1 { transform: scale(1); }
+        .l2 { animation-delay: 1s; transform: scale(0.9); }
         .l3 { animation-delay: 2s; transform: scale(1.1); }
-        .l4 { animation-delay: 0.5s; transform: scale(0.9); }
-        .l5 { animation-delay: 1.5s; }
+        .l4 { animation-delay: 0.5s; transform: scale(0.8); }
+        .l5 { animation-delay: 1.5s; transform: scale(1); }
 
+        /* --- Estructura de la Flor --- */
         .tepal {
             position: absolute;
             width: 35px;
@@ -56,16 +84,13 @@
             transform-origin: bottom center;
             left: 50%;
             margin-left: -17.5px;
-            top: -80px;
+            top: -350px; /* Punto alto debido al tallo */
         }
 
-        /* Rotaciones fijas de los pétalos */
-        .t1 { transform: rotate(0deg); }
-        .t2 { transform: rotate(60deg); }
-        .t3 { transform: rotate(120deg); }
-        .t4 { transform: rotate(180deg); }
-        .t5 { transform: rotate(240deg); }
-        .t6 { transform: rotate(300deg); }
+        /* Rotaciones de los pétalos */
+        .t1 { transform: rotate(0deg); } .t2 { transform: rotate(60deg); }
+        .t3 { transform: rotate(120deg); } .t4 { transform: rotate(180deg); }
+        .t5 { transform: rotate(240deg); } .t6 { transform: rotate(300deg); }
 
         .center {
             position: absolute;
@@ -73,251 +98,101 @@
             height: 20px;
             background: #5d4037;
             border-radius: 50%;
-            top: -10px;
-            left: -10px;
+            top: -280px; /* Ajuste centro */
+            left: 50%;
+            margin-left: -10px;
             z-index: 10;
         }
 
+        /* --- El Tallo Largo --- */
         .stem {
-            width: 8px;
-            height: 200px;
+            width: 10px;
+            height: 350px;
             background: linear-gradient(#4caf50, #2e7d32);
-            border-radius: 4px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
         }
 
-        @keyframes sway {
-            0%, 100% { transform: rotate(-3deg); }
-            50% { transform: rotate(3deg); }
-        }
-
-        /* --- Corazones Manuales --- */
-        .heart {
+        /* --- Corazones de Fondo (JS) --- */
+        .heart-particle {
             position: absolute;
-            color: #ffb74d;
-            opacity: 0.6;
-            animation: floatUp 6s linear infinite;
+            color: #ffb74d; /* Naranja melocotón suave */
+            opacity: 0.8;
+            pointer-events: none; /* No interfieren clics */
+            z-index: 1; /* Por DETRÁS de las flores */
+            animation: floatUp linear infinite;
+        }
+
+        /* --- Animaciones --- */
+        @keyframes sway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(100vh); opacity: 1; }
-            100% { transform: translateY(-10vh); opacity: 0; }
+            0% { transform: translateY(105vh) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(0.5); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <h1 class="message">Un jardín para ti 🌻</h1>
+    <div class="text-container">
+        <h1 class="main-title">Un ramito de lirios</h1>
+        <p class="personal-message">
+            mi niña hermosa <br>
+            te amo con toda mi alma mi vida hermosa <br>
+            te mereces esto y mucho más <br>
+            la distancia nos podra separar pero no impedira que te de tu ramito <br>
+            asi no eres espectadora mi vida :3  
+        </p>
+    </div>
 
     <div class="garden">
-        <div class="lily l1">
-            <div class="tepal t1"></div><div class="tepal t2"></div>
-            <div class="tepal t3"></div><div class="tepal t4"></div>
-            <div class="tepal t5"></div><div class="tepal t6"></div>
-            <div class="center"></div>
-            <div class="stem"></div>
-        </div>
-
-        <div class="lily l2">
-            <div class="tepal t1"></div><div class="tepal t2"></div>
-            <div class="tepal t3"></div><div class="tepal t4"></div>
-            <div class="tepal t5"></div><div class="tepal t6"></div>
-            <div class="center"></div>
-            <div class="stem" style="height: 300px;"></div>
-        </div>
-
-        <div class="lily l3">
-            <div class="tepal t1"></div><div class="tepal t2"></div>
-            <div class="tepal t3"></div><div class="tepal t4"></div>
-            <div class="tepal t5"></div><div class="tepal t6"></div>
-            <div class="center"></div>
-            <div class="stem" style="height: 350px;"></div>
-        </div>
-
-        <div class="heart" style="left: 10%; animation-delay: 0s;">❤</div>
-        <div class="heart" style="left: 30%; animation-delay: 2s;">❤</div>
-        <div class="heart" style="left: 55%; animation-delay: 4s;">❤</div>
-        <div class="heart" style="left: 80%; animation-delay: 1s;">❤</div>
+        <div class="lily l1"><div class="tepal t1"></div><div class="tepal t2"></div><div class="tepal t3"></div><div class="tepal t4"></div><div class="tepal t5"></div><div class="tepal t6"></div><div class="center"></div><div class="stem"></div></div>
+        <div class="lily l2"><div class="tepal t1"></div><div class="tepal t2"></div><div class="tepal t3"></div><div class="tepal t4"></div><div class="tepal t5"></div><div class="tepal t6"></div><div class="center"></div><div class="stem" style="height: 280px;"></div></div>
+        <div class="lily l3"><div class="tepal t1"></div><div class="tepal t2"></div><div class="tepal t3"></div><div class="tepal t4"></div><div class="tepal t5"></div><div class="tepal t6"></div><div class="center"></div><div class="stem" style="height: 400px;"></div></div>
+        <div class="lily l4"><div class="tepal t1"></div><div class="tepal t2"></div><div class="tepal t3"></div><div class="tepal t4"></div><div class="tepal t5"></div><div class="tepal t6"></div><div class="center"></div><div class="stem" style="height: 320px;"></div></div>
+        <div class="lily l5"><div class="tepal t1"></div><div class="tepal t2"></div><div class="tepal t3"></div><div class="tepal t4"></div><div class="tepal t5"></div><div class="tepal t6"></div><div class="center"></div><div class="stem"></div></div>
     </div>
-    <style>
-        .floating-heart {
-            position: absolute;
-            color: #ffb74d;
-            opacity: 0.8;
-            user-select: none;
-            pointer-events: none; 
-            z-index: 1; 
-            animation: floatUp linear infinite;
-        }
-
-        @keyframes floatUp {
-            0% {
-                transform: translateY(105vh) rotate(0deg) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-10vh) rotate(360deg) scale(0.5);
-                opacity: 0;
-            }
-        }
-        @media (max-width: 600px) {
-    .message {
-        font-size: 2rem; 
-        top: 5%;
-        padding: 0 10px;
-    }
-
-    .garden {
-        justify-content: center; 
-        gap: 10px;
-    }
-
-    .lily {
-        transform: scale(0.6);
-    }
-
-    .lily:nth-child(n+4) {
-        display: none;
-    }
-
-    .stem {
-        height: 150px !important; /* Tallos más cortos para que quepan en la pantalla */
-    }
-
-    .floating-heart {
-        font-size: 14px !important; /* Corazones más pequeños */
-    }
-}
-    </style>
-    
 
     <script>
-        // Función para generar un corazón en una posición aleatoria
-        function createMovingHeart() {
+        function createHeart() {
             const heart = document.createElement('div');
-            heart.classList.add('floating-heart');
+            heart.classList.add('heart-particle');
             heart.innerHTML = '❤'; // Usamos el símbolo de texto
 
             // --- Configuraciones Aleatorias ---
-            // Posición horizontal (0vw a 100vw ancho de pantalla)
+            // Posición horizontal (0 a 100% ancho)
             heart.style.left = Math.random() * 100 + "vw";
             
-            // Tamaño (entre 10px y 30px)
+            // Tamaño aleatorio (entre 10px y 30px)
             const size = Math.random() * 20 + 10 + "px";
             heart.style.fontSize = size;
             
-            // Duración de la subida (entre 4 y 9 segundos)
+            // Duración aleatoria de la subida (entre 4 y 9 segundos)
             const duration = Math.random() * 5 + 4 + "s";
             heart.style.animationDuration = duration;
             
             // Opacidad inicial aleatoria para dar profundidad
             heart.style.opacity = Math.random() * 0.5 + 0.3;
 
-            // Añadimos el corazón al body
             document.body.appendChild(heart);
 
+            // Importante: Eliminarlo del DOM después de que suba
             setTimeout(() => {
                 heart.remove();
             }, 9000); 
         }
 
-        setInterval(createMovingHeart, 300);
+        // Crear un corazón nuevo cada 300 milisegundos
+        setInterval(createHeart, 300);
     </script>
-    <style>
-        /* Estilos base para los elementos flotantes */
-        .sparkle-element {
-            position: absolute;
-            user-select: none;
-            pointer-events: none; /* No interfieren con clics */
-            z-index: 1; /* Por DETRÁS de las flores (que tienen z-index 10) */
-            animation: floatAndShine linear infinite;
-            text-shadow: 0 0 5px rgba(255,255,255,0.8); /* Brillo */
-        }
 
-        /* Color para los corazones */
-        .sparkle-heart {
-            color: #ffccbc; /* Naranja melocotón muy suave */
-        }
-
-        /* Color para las estrellitas */
-        .sparkle-star {
-            color: #fff59d; /* Amarillo pálido brillante */
-        }
-
-        /* Animación combinada: Subir, Rotar y Parpadear */
-        @keyframes floatAndShine {
-            0% {
-                transform: translateY(105vh) rotate(0deg) scale(1);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1; /* Aparecen suavemente */
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                /* Suben, rotan 360 grados y se achican */
-                transform: translateY(-10vh) rotate(360deg) scale(0.5);
-                opacity: 0;
-            }
-        }
-    </style>
-
-    <script>
-        // Función principal para crear un elemento flotante (corazón o estrella)
-        function createSparkle() {
-            const container = document.body;
-            const element = document.createElement('div');
-            element.classList.add('sparkle-element');
-
-            // --- Decidir si es Corazón o Estrella (50% de probabilidad) ---
-            if (Math.random() > 0.5) {
-                element.innerHTML = '❤'; // Corazón
-                element.classList.add('sparkle-heart');
-            } else {
-                element.innerHTML = '★'; // Estrella
-                element.classList.add('sparkle-star');
-            }
-
-            // --- Configuraciones Aleatorias para cada elemento ---
-            
-            // Posición horizontal (0vw a 100vw ancho de pantalla)
-            element.style.left = Math.random() * 100 + "vw";
-            
-            // Tamaño (entre 10px y 25px)
-            const size = Math.random() * 15 + 10 + "px";
-            element.style.fontSize = size;
-            
-            // Duración de la subida (entre 5 y 10 segundos)
-            const duration = Math.random() * 5 + 5 + "s";
-            element.style.animationDuration = duration;
-            
-            // Retraso aleatorio para que no salgan todos a la vez al cargar
-            const delay = Math.random() * 5 + "s";
-            element.style.animationDelay = delay;
-
-            // Añadimos el elemento al body
-            container.appendChild(element);
-
-            // Importante: Lo eliminamos del DOM después de que suba
-            // para no saturar la memoria del navegador.
-            setTimeout(() => {
-                element.remove();
-            }, 15000); // Tiempo suficiente para que termine la animación más larga
-        }
-
-        // --- Lanzador de Magia ---
-        // Crea un elemento nuevo cada 200 milisegundos (aprox. 5 por segundo)
-        // Esto llenará la pantalla rápidamente de forma sutil.
-        setInterval(createSparkle, 200);
-
-        // Opcional: Crear unos 20 elementos de golpe al cargar la página
-        // para que no empiece vacía.
-        window.addEventListener('load', () => {
-            for(let i = 0; i < 20; i++) {
-                createSparkle();
-            }
-        });
-    </script>
 </body>
 </html>
