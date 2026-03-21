@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Jardín de Lirios Amarillos</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap');
+
+        body {
+            background-color: #fffde7;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .message {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            text-align: center;
+            font-size: 3rem;
+            color: #fbc02d;
+            z-index: 100;
+        }
+
+        /* --- Contenedor de Lirios --- */
+        .garden {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding-bottom: 20px;
+        }
+
+        .lily {
+            position: relative;
+            transform-origin: bottom center;
+            animation: sway 4s ease-in-out infinite;
+        }
+
+        /* Variaciones de animación para que no se muevan igual */
+        .l2 { animation-delay: 1s; transform: scale(0.8); }
+        .l3 { animation-delay: 2s; transform: scale(1.1); }
+        .l4 { animation-delay: 0.5s; transform: scale(0.9); }
+        .l5 { animation-delay: 1.5s; }
+
+        .tepal {
+            position: absolute;
+            width: 35px;
+            height: 80px;
+            background: linear-gradient(#fff9c4, #ffeb3b, #fbc02d);
+            border-radius: 50% 50% 10% 10%;
+            transform-origin: bottom center;
+            left: 50%;
+            margin-left: -17.5px;
+            top: -80px;
+        }
+
+        /* Rotaciones fijas de los pétalos */
+        .t1 { transform: rotate(0deg); }
+        .t2 { transform: rotate(60deg); }
+        .t3 { transform: rotate(120deg); }
+        .t4 { transform: rotate(180deg); }
+        .t5 { transform: rotate(240deg); }
+        .t6 { transform: rotate(300deg); }
+
+        .center {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #5d4037;
+            border-radius: 50%;
+            top: -10px;
+            left: -10px;
+            z-index: 10;
+        }
+
+        .stem {
+            width: 8px;
+            height: 200px;
+            background: linear-gradient(#4caf50, #2e7d32);
+            border-radius: 4px;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+
+        /* --- Corazones Manuales --- */
+        .heart {
+            position: absolute;
+            color: #ffb74d;
+            opacity: 0.6;
+            animation: floatUp 6s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="message">Un jardín para ti 🌻</h1>
+
+    <div class="garden">
+        <div class="lily l1">
+            <div class="tepal t1"></div><div class="tepal t2"></div>
+            <div class="tepal t3"></div><div class="tepal t4"></div>
+            <div class="tepal t5"></div><div class="tepal t6"></div>
+            <div class="center"></div>
+            <div class="stem"></div>
+        </div>
+
+        <div class="lily l2">
+            <div class="tepal t1"></div><div class="tepal t2"></div>
+            <div class="tepal t3"></div><div class="tepal t4"></div>
+            <div class="tepal t5"></div><div class="tepal t6"></div>
+            <div class="center"></div>
+            <div class="stem" style="height: 150px;"></div>
+        </div>
+
+        <div class="lily l3">
+            <div class="tepal t1"></div><div class="tepal t2"></div>
+            <div class="tepal t3"></div><div class="tepal t4"></div>
+            <div class="tepal t5"></div><div class="tepal t6"></div>
+            <div class="center"></div>
+            <div class="stem" style="height: 250px;"></div>
+        </div>
+
+        <div class="heart" style="left: 10%; animation-delay: 0s;">❤</div>
+        <div class="heart" style="left: 30%; animation-delay: 2s;">❤</div>
+        <div class="heart" style="left: 55%; animation-delay: 4s;">❤</div>
+        <div class="heart" style="left: 80%; animation-delay: 1s;">❤</div>
+    </div>
+    <style>
+        /* Definimos el estilo del corazón flotante */
+        .floating-heart {
+            position: absolute;
+            color: #ffb74d; /* Naranja melocotón suave */
+            opacity: 0.8;
+            user-select: none;
+            pointer-events: none; /* No interfieren con clics */
+            z-index: 1; /* Por DETRÁS de las flores (que tienen z-index 10) */
+            animation: floatUp linear infinite;
+        }
+
+        /* La animación que los hace subir y rotar */
+        @keyframes floatUp {
+            0% {
+                transform: translateY(105vh) rotate(0deg) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+        @media (max-width: 600px) {
+    .message {
+        font-size: 2rem; /* Texto más pequeño en móviles */
+        top: 5%;
+        padding: 0 10px;
+    }
+
+    .garden {
+        /* En el celular, mostramos menos flores o las achicamos 
+           para que no se saturen */
+        justify-content: center; 
+        gap: 10px;
+    }
+
+    .lily {
+        transform: scale(0.6); /* Reducimos el tamaño general de los lirios */
+    }
+
+    /* Ocultamos algunos lirios para que no se vea desordenado en pantallas pequeñas */
+    .lily:nth-child(n+4) {
+        display: none;
+    }
+
+    .stem {
+        height: 150px !important; /* Tallos más cortos para que quepan en la pantalla */
+    }
+
+    .floating-heart {
+        font-size: 14px !important; /* Corazones más pequeños */
+    }
+}
+    </style>
+    
+
+    <script>
+        // Función para generar un corazón en una posición aleatoria
+        function createMovingHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤'; // Usamos el símbolo de texto
+
+            // --- Configuraciones Aleatorias ---
+            // Posición horizontal (0vw a 100vw ancho de pantalla)
+            heart.style.left = Math.random() * 100 + "vw";
+            
+            // Tamaño (entre 10px y 30px)
+            const size = Math.random() * 20 + 10 + "px";
+            heart.style.fontSize = size;
+            
+            // Duración de la subida (entre 4 y 9 segundos)
+            const duration = Math.random() * 5 + 4 + "s";
+            heart.style.animationDuration = duration;
+            
+            // Opacidad inicial aleatoria para dar profundidad
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
+
+            // Añadimos el corazón al body
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 9000); 
+        }
+
+        setInterval(createMovingHeart, 300);
+    </script>
+    <style>
+        /* Estilos base para los elementos flotantes */
+        .sparkle-element {
+            position: absolute;
+            user-select: none;
+            pointer-events: none; /* No interfieren con clics */
+            z-index: 1; /* Por DETRÁS de las flores (que tienen z-index 10) */
+            animation: floatAndShine linear infinite;
+            text-shadow: 0 0 5px rgba(255,255,255,0.8); /* Brillo */
+        }
+
+        /* Color para los corazones */
+        .sparkle-heart {
+            color: #ffccbc; /* Naranja melocotón muy suave */
+        }
+
+        /* Color para las estrellitas */
+        .sparkle-star {
+            color: #fff59d; /* Amarillo pálido brillante */
+        }
+
+        /* Animación combinada: Subir, Rotar y Parpadear */
+        @keyframes floatAndShine {
+            0% {
+                transform: translateY(105vh) rotate(0deg) scale(1);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1; /* Aparecen suavemente */
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                /* Suben, rotan 360 grados y se achican */
+                transform: translateY(-10vh) rotate(360deg) scale(0.5);
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <script>
+        // Función principal para crear un elemento flotante (corazón o estrella)
+        function createSparkle() {
+            const container = document.body;
+            const element = document.createElement('div');
+            element.classList.add('sparkle-element');
+
+            // --- Decidir si es Corazón o Estrella (50% de probabilidad) ---
+            if (Math.random() > 0.5) {
+                element.innerHTML = '❤'; // Corazón
+                element.classList.add('sparkle-heart');
+            } else {
+                element.innerHTML = '★'; // Estrella
+                element.classList.add('sparkle-star');
+            }
+
+            // --- Configuraciones Aleatorias para cada elemento ---
+            
+            // Posición horizontal (0vw a 100vw ancho de pantalla)
+            element.style.left = Math.random() * 100 + "vw";
+            
+            // Tamaño (entre 10px y 25px)
+            const size = Math.random() * 15 + 10 + "px";
+            element.style.fontSize = size;
+            
+            // Duración de la subida (entre 5 y 10 segundos)
+            const duration = Math.random() * 5 + 5 + "s";
+            element.style.animationDuration = duration;
+            
+            // Retraso aleatorio para que no salgan todos a la vez al cargar
+            const delay = Math.random() * 5 + "s";
+            element.style.animationDelay = delay;
+
+            // Añadimos el elemento al body
+            container.appendChild(element);
+
+            // Importante: Lo eliminamos del DOM después de que suba
+            // para no saturar la memoria del navegador.
+            setTimeout(() => {
+                element.remove();
+            }, 15000); // Tiempo suficiente para que termine la animación más larga
+        }
+
+        // --- Lanzador de Magia ---
+        // Crea un elemento nuevo cada 200 milisegundos (aprox. 5 por segundo)
+        // Esto llenará la pantalla rápidamente de forma sutil.
+        setInterval(createSparkle, 200);
+
+        // Opcional: Crear unos 20 elementos de golpe al cargar la página
+        // para que no empiece vacía.
+        window.addEventListener('load', () => {
+            for(let i = 0; i < 20; i++) {
+                createSparkle();
+            }
+        });
+    </script>
+</body>
+</html>
